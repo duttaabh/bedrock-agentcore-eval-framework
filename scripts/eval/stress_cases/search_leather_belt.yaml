@@ -1,0 +1,13 @@
+id: search_leather_belt
+description: Accessory search with colour + material (brown leather belt)
+# Catalog: accessories/belts exists in Brown; leather belts exist (description only).
+queries:
+- I want a brown leather belt for dress pants
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: [accessories, belts]
+- type: all_products_match_color
+  value: [brown]
+tags: [search, accessories, color]

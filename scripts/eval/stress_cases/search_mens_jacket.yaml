@@ -1,0 +1,12 @@
+id: search_mens_jacket
+description: Style + audience search with seasonal flavour (casual mens jackets)
+# "fall weather" has no counterpart in the data and is kept deliberately as
+# realistic noise the assistant should not be derailed by.
+queries:
+- show me casual mens jackets for fall weather
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: [mens, jackets]
+tags: [search, style]

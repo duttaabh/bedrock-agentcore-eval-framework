@@ -1,0 +1,14 @@
+id: filter_green_shoes
+description: Colour filter on shoes (green)
+# Grounded to the catalog: there are no sneaker/running styles; "Casual" is a
+# title adjective and Green is a catalog colour for every shoe segment.
+queries:
+- show me green casual shoes
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: shoes
+- type: all_products_match_color
+  value: [green]
+tags: [filter, color]

@@ -1,0 +1,12 @@
+id: search_casual_shirt
+description: Style + audience search (casual shirts for men)
+# Grounded to the catalog: "button-down" has no counterpart in the data;
+# "Casual" is a title adjective and mens/shirts exists.
+queries:
+- show me casual shirts for men
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: [mens, shirts]
+tags: [search, style]

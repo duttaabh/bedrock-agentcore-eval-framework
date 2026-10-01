@@ -1,0 +1,12 @@
+id: search_suede_jacket
+description: Material + audience search (suede jacket for men)
+# Catalog: suede mens jackets exist (~41k jackets are suede). Material is in the
+# description only, so it is left to the judge; category is deterministic.
+queries:
+- suede jacket for men
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: [mens, jackets]
+tags: [search, material]

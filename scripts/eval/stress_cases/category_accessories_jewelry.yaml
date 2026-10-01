@@ -1,0 +1,13 @@
+id: category_accessories_jewelry
+description: Accessories category with a two-colour constraint (charcoal or tan jewelry)
+# Catalog: accessories/jewelry exists in all 15 colours including Charcoal and Tan.
+queries:
+- show me charcoal or tan jewelry
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: [accessories, jewelry]
+- type: all_products_match_color
+  value: [charcoal, tan]
+tags: [category, color]

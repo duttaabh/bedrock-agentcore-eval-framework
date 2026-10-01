@@ -1,0 +1,12 @@
+id: search_womens_shoes
+description: Style + audience + two-colour search (elegant womens shoes, green or tan)
+queries:
+- show me elegant womens shoes in green or tan
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: [womens, shoes]
+- type: all_products_match_color
+  value: [green, tan]
+tags: [search, color]

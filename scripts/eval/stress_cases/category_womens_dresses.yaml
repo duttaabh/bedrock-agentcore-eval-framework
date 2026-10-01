@@ -1,0 +1,13 @@
+id: category_womens_dresses
+description: Womens category browse (casual dresses)
+# Grounded to the catalog: dropped "summer" (no seasonal attribute exists anywhere
+# in the data, so it could only ever be ignored). womens/dresses exists; note the
+# title singular is "dresse" (generator artifact).
+queries:
+- show me casual dresses for women
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: [womens, dresses]
+tags: [category]

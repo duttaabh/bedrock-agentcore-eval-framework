@@ -1,0 +1,54 @@
+# Copy to terraform.tfvars and edit (terraform.tfvars is gitignored -- it's
+# your local config, not something to commit). Every value here has a
+# default in variables.tf; only override what you need to change.
+#
+# This file shows two things: the full set of variables with their defaults
+# spelled out (commented), and a concrete example block at the bottom from an
+# actual deploy, as a starting point.
+
+# --- Core ---
+aws_region     = "us-west-2"      # region for every resource (ECR, AOSS, AgentCore Runtime)
+aws_profile    = ""               # named AWS CLI profile; empty = default credential chain
+resource_label = "agentcore-eval" # short label used to name/tag everything (ECR repo, AOSS
+                                   # collection, IAM role, runtime name)
+
+# --- Runtime image ---
+# image_tag = "latest"            # ECR tag Terraform points the AgentCore Runtime at.
+                                   # Build/push happens outside Terraform (scripts/build_and_push.sh);
+                                   # this only wires the runtime to whatever tag you give it.
+
+# --- Model access ---
+default_agent_model_id = "us.anthropic.claude-haiku-4-5-20251001-v1:0"
+                                   # Used when a request sends no config_overrides.agent_model_id.
+allow_config_overrides = true     # Lets run_eval.py --agent-model/--compare-models switch models
+                                   # per request via config_overrides.agent_model_id. Set false to
+                                   # pin the deployment to default_agent_model_id only.
+# allowed_bedrock_models = []     # Allowlist scoping the runtime role's bedrock:InvokeModel* IAM
+                                   # policy. Empty = unrestricted (foundation-model/* and
+                                   # inference-profile/* wildcard). Entries can be bare model IDs
+                                   # (expanded to both ARN forms) or full ARNs used verbatim.
+                                   # Tighten this for a shared/production account -- but make sure
+                                   # it covers every model you intend to eval with, including judges.
+                                   # Example: ["us.anthropic.claude-haiku-4-5-20251001-v1:0", "us.openai.gpt-5.6-sol"]
+
+# --- OpenSearch catalog ---
+# opensearch_collection_name = ""  # defaults to resource_label
+opensearch_index_name = "products" # must match --index on scripts/ingest_catalog.py and
+                                    # CATALOG_OPENSEARCH_INDEX-equivalent OPENSEARCH_INDEX env var
+                                    # the runtime reads (set automatically by Terraform)
+allow_public_access = true         # AOSS network policy. true = public internet access to the
+                                    # collection (simplest for a standalone eval env, no VPC here).
+                                    # Set false only if you've added VPC endpoint wiring yourself
+                                    # (see the precondition in tf/opensearch.tf).
+
+# --- Extra OpenSearch access (beyond the runtime role + whoever ran `terraform apply`) ---
+# additional_read_principals  = []  # e.g. ["arn:aws:iam::123456789012:role/my-dev-role"]
+# additional_write_principals = []  # e.g. a CI role that runs scripts/ingest_catalog.py
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Minimal example: the smallest useful override set, picking a region and
+# profile and leaving everything else at its default.
+# ─────────────────────────────────────────────────────────────────────────────
+# aws_region  = "us-west-2"
+# aws_profile = "my-aws-profile"
+# resource_label = "agentcore-eval"

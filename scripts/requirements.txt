@@ -1,0 +1,7 @@
+# Dependencies for everything under scripts/ (catalog generation, ingestion,
+# and the eval harness). The runtime container has its own requirements.txt
+# (runtime/requirements.txt) -- these are separate environments.
+boto3>=1.39.9
+PyYAML>=6.0
+opensearch-py>=3.0.0
+requests-aws4auth>=1.3.1

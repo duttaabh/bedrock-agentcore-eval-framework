@@ -1,0 +1,15 @@
+id: search_tan_shoes
+description: Colour + material search for mens shoes (tan, leather)
+# Grounded to the catalog: there is no "loafer" style; the previous query asked
+# for loafers and agents were failed for honestly saying they had none. The
+# style-not-in-catalog behaviour is now its own case (edge_style_not_in_catalog).
+queries:
+- tan leather shoes for men
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: [mens, shoes]
+- type: all_products_match_color
+  value: [tan]
+tags: [search, color, material]

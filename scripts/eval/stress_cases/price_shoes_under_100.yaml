@@ -1,0 +1,12 @@
+id: price_shoes_under_100
+description: Price ceiling on a category (shoes under $100)
+queries:
+- show me shoes under $100
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: shoes
+- type: all_products_under_price
+  value: 100
+tags: [price]

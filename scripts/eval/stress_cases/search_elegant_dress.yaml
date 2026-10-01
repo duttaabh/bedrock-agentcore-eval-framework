@@ -1,0 +1,14 @@
+id: search_elegant_dress
+description: Style + colour + occasion search (elegant black dress)
+# Catalog: "Elegant" is a title adjective, Black a colour, womens/dresses a
+# category. "cocktail party" is occasion flavour with no data counterpart.
+queries:
+- I need an elegant black dress for a cocktail party
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: [womens, dresses]
+- type: all_products_match_color
+  value: [black]
+tags: [search, color, style]

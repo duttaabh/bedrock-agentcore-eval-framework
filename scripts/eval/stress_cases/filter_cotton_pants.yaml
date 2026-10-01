@@ -1,0 +1,15 @@
+id: filter_cotton_pants
+description: Material + colour filter on mens pants (cotton, tan or navy)
+# Grounded to the catalog: colours are Tan/Navy (there is no "khaki"; agents
+# substituted Tan/Beige and were then marked as colour mismatches). Cotton is a
+# real material but lives only in the description, so it is left to the judge.
+queries:
+- cotton casual pants for men in tan or navy
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: [mens, pants]
+- type: all_products_match_color
+  value: [tan, navy]
+tags: [filter, material, color]

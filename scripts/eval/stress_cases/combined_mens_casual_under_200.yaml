@@ -1,0 +1,13 @@
+id: combined_mens_casual_under_200
+description: Category + style + price filter (casual mens jackets under $200)
+# Catalog: mens/jackets exists; prices span $15-$299 so the ceiling is a real filter.
+queries:
+- casual mens jackets under $200
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: [mens, jackets]
+- type: all_products_under_price
+  value: 200
+tags: [combined, price]

@@ -1,0 +1,13 @@
+id: clarifying_question_for_vague_query
+description: Vague query should prompt clarification
+auto_continue: true
+max_auto_turns: 2
+queries:
+- I need something to wear
+criteria:
+- prompt: Did the assistant ask a clarifying question instead of immediately showing
+    products? The query was vague ("I need something to wear"). PASS if the assistant
+    asked about occasion, style, category, or preferences. FAIL if it showed products
+    without asking any questions first.
+  type: llm_judge
+  turn: 0

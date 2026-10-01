@@ -1,0 +1,12 @@
+id: search_wool_sweater
+description: Material search with no gender (wool sweaters)
+# Catalog: sweaters exist for mens and womens (not kids); wool is in the
+# description only, so the material is left to the judge.
+queries:
+- show me wool sweaters
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: sweaters
+tags: [search, material]

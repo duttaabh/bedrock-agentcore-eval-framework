@@ -1,0 +1,46 @@
+id: multi_turn_shoes_then_price
+description: Browse shoes (beige or cream), then filter the shown set by price
+# Turn indices are stable: the two scripted queries are turns 0 and 1, and
+# auto_continue is off so nothing follows them.
+#
+# Turn 1 asks "which ones are under $100?" about the shoes already shown. Two
+# honest answers exist: display only the under-$100 subset, or say that none of
+# the shown shoes is under $100 (zero products). Several agents did the latter
+# when their turn-0 set happened to be all over budget, so turn 1 has no
+# min_product_count; the deterministic checks constrain whatever IS shown, and
+# the judge checks that the text and the cards tell the same story.
+auto_continue: false
+queries:
+- show me mens shoes in beige or cream
+- which ones are under $100?
+criteria:
+- type: min_product_count
+  value: 1
+  turn: 0
+- type: all_products_match_category
+  value: [mens, shoes]
+  turn: 0
+- type: all_products_match_color
+  value: [beige, cream]
+  turn: 0
+- type: all_products_match_category
+  value: [mens, shoes]
+  turn: 1
+- type: all_products_match_color
+  value: [beige, cream]
+  turn: 1
+- type: all_products_under_price
+  value: 100
+  turn: 1
+- type: llm_judge
+  severity: fail
+  turn: 1
+  prompt: >
+    Turn 1 asks which of the previously shown mens beige/cream shoes are under
+    $100. PASS if the assistant either (a) displays only shoes priced at most
+    $100 and its text matches those cards, or (b) displays nothing and states
+    truthfully that none of the shown shoes is under $100 (optionally offering
+    to search within budget). FAIL if it displays any shoe over $100 as an
+    answer to this question, if its text names under-$100 shoes that it does
+    not display, or if it claims a price that contradicts a displayed card.
+tags: [multi_turn, price, color]

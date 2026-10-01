@@ -1,0 +1,14 @@
+id: price_shirts_under_50
+description: Price ceiling on a category (shirts under $50)
+# The catalog has both "shirts" and "tshirts" categories; either is a reasonable
+# reading of "shirts", so both are accepted.
+queries:
+- show me shirts under $50
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  any_of: [shirts, tshirts]
+- type: all_products_under_price
+  value: 50
+tags: [price]

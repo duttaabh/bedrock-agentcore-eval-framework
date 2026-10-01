@@ -1,0 +1,9 @@
+id: answer_clarifying_questions
+description: Model should return products after answering clarifying questions
+auto_continue: true
+max_auto_turns: 3
+queries:
+- I need a gift
+criteria:
+- type: min_product_count
+  value: 1

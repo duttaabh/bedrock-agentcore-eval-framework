@@ -1,0 +1,40 @@
+# Test cases for catalog_search_eval.py -- direct, in-process checks against
+# the search_catalog tool (no agent/LLM involved). Grounded to the taxonomy in
+# scripts/data_gen/generate_catalog.py (SEGMENT_CATEGORIES/COLORS).
+
+- name: "mens pants"
+  query: "casual mens pants"
+  categories: [mens, pants]
+  max_results: 8
+  expect_all_category: "pants"
+
+- name: "womens dresses"
+  query: "elegant dress"
+  categories: [womens, dresses]
+  max_results: 8
+  expect_all_category: "dresses"
+
+- name: "green shoes"
+  query: "green shoes"
+  categories: [shoes]
+  colors: [green]
+  max_results: 8
+  expect_all_category: "shoes"
+
+- name: "accessories jewelry under $50"
+  query: "jewelry"
+  categories: [accessories, jewelry]
+  max_price: 50
+  max_results: 8
+  expect_all_category: "jewelry"
+
+- name: "kids has no tshirts"
+  query: "kids tshirt"
+  categories: [kids, tshirts]
+  max_results: 8
+  expect_empty: true
+
+- name: "nonsense query returns nothing"
+  query: "purple dinosaur costume"
+  max_results: 8
+  expect_empty: true

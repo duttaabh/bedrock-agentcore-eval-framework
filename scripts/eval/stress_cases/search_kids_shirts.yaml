@@ -1,0 +1,15 @@
+id: search_kids_shirts
+description: Audience + material + price search (kids shirts, cotton, under $30)
+# Grounded to the catalog: the kids segment has shirts, pants, jackets and shoes
+# only (no tshirts) and is labelled "kids" (no boys/girls). The previous query
+# asked for "t-shirts for boys", which does not exist as specified.
+queries:
+- show me cotton shirts for kids under $30
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: [kids, shirts]
+- type: all_products_under_price
+  value: 30
+tags: [search, kids, price]

@@ -1,0 +1,12 @@
+id: category_womens_skirts
+description: Womens category browse with a style adjective that exists (tailored skirts)
+# Grounded to the catalog: "knee-length" has no counterpart in the data;
+# "Tailored" is a real title adjective. "for the office" is harmless flavour.
+queries:
+- show me tailored skirts for the office
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: [womens, skirts]
+tags: [category, style]

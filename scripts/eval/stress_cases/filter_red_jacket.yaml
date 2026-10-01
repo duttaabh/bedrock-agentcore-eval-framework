@@ -1,0 +1,14 @@
+id: filter_red_jacket
+description: Colour filter across two gender segments (red jackets, mens or womens)
+# Catalog: jackets exist for mens, womens and kids; the query allows mens or womens only.
+queries:
+- show me red jackets for mens or womens
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: jackets
+  any_of: [mens, womens]
+- type: all_products_match_color
+  value: [red]
+tags: [filter, color]

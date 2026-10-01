@@ -1,0 +1,13 @@
+id: compare_shoes_jackets
+description: Two categories in one request (mens shoes and mens jackets)
+# Every product must be mens and either a shoe or a jacket; at least two products
+# because the request asks for both types side by side.
+queries:
+- show me your best mens shoes and mens jackets side by side
+criteria:
+- type: min_product_count
+  value: 2
+- type: all_products_match_category
+  value: mens
+  any_of: [shoes, jackets]
+tags: [compare, category]

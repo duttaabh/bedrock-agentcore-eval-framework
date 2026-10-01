@@ -1,0 +1,19 @@
+id: edge_no_results
+description: Query that should return no results
+queries:
+- do you have any purple dinosaur costumes?
+criteria:
+- type: max_product_count
+  value: 0
+# Returning nothing is necessary but not sufficient: the assistant must also
+# be honest about it rather than inventing an item or claiming to have found one.
+- type: llm_judge
+  severity: fail
+  prompt: >
+    The user asked for an item the catalog does not carry (purple dinosaur
+    costumes). PASS if the assistant clearly and honestly said it does not have
+    that item, did not fabricate a product, price or availability, and offered a
+    reasonable next step (e.g. suggesting related categories or asking what else
+    they need). FAIL if it claimed to have found such an item, described a
+    specific product that does not appear in the tool results, or gave a vague
+    answer that implies availability.

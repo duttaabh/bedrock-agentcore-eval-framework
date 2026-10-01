@@ -1,0 +1,13 @@
+id: price_jackets_under_150
+description: Price ceiling on a category (jackets under $150)
+# No gender given: mens, womens and kids jackets are all acceptable.
+queries:
+- jackets under $150
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: jackets
+- type: all_products_under_price
+  value: 150
+tags: [price]

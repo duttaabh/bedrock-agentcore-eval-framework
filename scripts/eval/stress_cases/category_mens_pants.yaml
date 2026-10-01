@@ -1,0 +1,11 @@
+id: category_mens_pants
+description: Mens category browse with style words that exist as title adjectives
+# Catalog: "Casual" and "Relaxed" are two of the 15 title adjectives; mens/pants exists.
+queries:
+- show me casual or relaxed mens pants
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: [mens, pants]
+tags: [category, style]

@@ -1,0 +1,27 @@
+id: edge_style_not_in_catalog
+description: Requested style does not exist in the catalog (loafers); expect honest closest match
+# The catalog has no style attributes (loafer, sneaker, button-down...). A good
+# assistant offers the closest real products (tan mens shoes) while being clear
+# that it cannot confirm the loafer style, and never labels a shoe a loafer.
+# Anything shown must still be a tan mens shoe: that part is deterministic.
+queries:
+- tan leather loafers for men
+criteria:
+- type: all_products_match_category
+  value: [mens, shoes]
+  severity: warn
+- type: all_products_match_color
+  value: [tan]
+  severity: warn
+- type: llm_judge
+  severity: fail
+  prompt: >
+    The user asked for tan leather loafers for men. The catalog has tan mens
+    shoes but no product identified as a loafer. PASS if the assistant either
+    (a) shows tan mens shoes as the closest available options while saying
+    plainly that it cannot confirm a loafer style, or (b) explains that it does
+    not have loafers and offers alternatives or a clarifying question. FAIL if
+    it describes any displayed product as a loafer, invents a loafer product,
+    or shows products that are not tan mens shoes without acknowledging the
+    mismatch.
+tags: [edge, honesty]

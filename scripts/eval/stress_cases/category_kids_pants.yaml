@@ -1,0 +1,11 @@
+id: category_kids_pants
+description: Kids category browse with no colour constraint
+# Catalog: kids/pants exists (~136k items). "any color" must not narrow results.
+queries:
+- show me casual pants for kids, any color
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: [kids, pants]
+tags: [category, kids]

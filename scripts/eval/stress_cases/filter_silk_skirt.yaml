@@ -1,0 +1,13 @@
+id: filter_silk_skirt
+description: Material filter on womens skirts (silk)
+# Grounded to the catalog: "midi" and "formal" have no counterpart in the data;
+# "Elegant" is a title adjective. Silk is a real material (description only), so
+# the material itself is left to the judge; category is deterministic.
+queries:
+- show me elegant silk skirts
+criteria:
+- type: min_product_count
+  value: 1
+- type: all_products_match_category
+  value: [womens, skirts]
+tags: [filter, material]

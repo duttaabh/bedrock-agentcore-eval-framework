@@ -16,7 +16,10 @@ this standalone evaluation use case, not a fork of any other codebase.
 Validated end-to-end against a real deployment: infrastructure applied,
 image built and pushed, 100k products ingested, and a full multi-model
 comparison run (3 agent models, LLM-judged) completed with 0 inconclusive
-results. See "Known limitations" below for two real bugs that surfaced
+results. See
+[`eval_reports/model_comparison_gpt56_vs_sonnet5_judge.md`](eval_reports/model_comparison_gpt56_vs_sonnet5_judge.md)
+for the report that run produced (account id, runtime id, and local paths
+redacted), and "Known limitations" below for two real bugs that surfaced
 during that run and were fixed.
 
 ## What's here

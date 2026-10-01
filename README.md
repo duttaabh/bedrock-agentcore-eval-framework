@@ -1,7 +1,8 @@
 # AgentCore Runtime Eval Framework
 
 A standalone, product-search-and-discovery-only AgentCore Runtime, an
-OpenSearch Serverless catalog of 100,000 synthetic products, and a full
+OpenSearch Serverless catalog of synthetic products (scales to 100,000+;
+ships with 70,000), and a full
 agent-evaluation harness (`scripts/eval/`) -- all in one small repo so you
 can switch agent models, run stress-test suites, and LLM-judge the results,
 with none of the cart/customer-profile/memory/voice machinery a full
@@ -34,7 +35,7 @@ scripts/
   ingest_catalog.py              Bulk-loads the catalog into OpenSearch
   build_and_push.sh              Build/push the runtime image to ECR
   eval/                           Eval harness (run_eval.py, stress_cases/, etc.)
-data/catalog.jsonl              100,000 generated products (~27MB)
+data/catalog.jsonl              70,000 generated products (~19MB)
 docs/eval-process.md            How the eval harness works, end to end
 ```
 
@@ -127,13 +128,17 @@ daemon" otherwise.
 
 ### 3. Generate and load the catalog
 
-The 100k-product catalog is already generated at `data/catalog.jsonl`.
-Regenerate it (e.g. with a different `--count` or `--seed`) with:
+A 70,000-product catalog is already generated at `data/catalog.jsonl`
+(~19MB). It's capped at 70k rather than the originally-requested 100k
+(~27MB) because GitHub's web upload UI rejects individual files over 25MB --
+if you're not distributing this repo through that upload flow (plain `git
+push`, git-lfs, or any other transfer), there's no reason to stay under it.
+Regenerate at any size with:
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r scripts/requirements.txt
-python3 scripts/data_gen/generate_catalog.py --count 100000
+python3 scripts/data_gen/generate_catalog.py --count 100000   # or any --count/--seed
 ```
 
 Then load it into the collection Terraform created:
